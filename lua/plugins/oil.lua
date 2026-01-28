@@ -1,7 +1,7 @@
 return {
   'stevearc/oil.nvim',
   dependencies = {
-    'echasnovski/mini.icons',
+    'nvim-mini/mini.icons',
   },
   config = function()
     require('oil').setup {
@@ -13,6 +13,15 @@ return {
         {
 
           'icon',
+        },
+      },
+      keymaps = {
+        ['yp'] = {
+          desc = 'copy filepath to system clipboard',
+          callback = function()
+            require('oil.actions').copy_entry_path.callback()
+            vim.fn.setreg('+', vim.fn.getreg(vim.v.register))
+          end,
         },
       },
     }
